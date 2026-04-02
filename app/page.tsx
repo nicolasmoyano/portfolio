@@ -12,7 +12,7 @@ export default function Home() {
           Latest Insights
         </h2>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto text-center mb-12">
-          Thoughts on product design, conversion optimization, and building better digital experiences.
+          Thoughts on growing as a designer, product design, and building better experiences.
         </p>
         <MediumArticles username="nico.moy" limit={6} />
       </div>
