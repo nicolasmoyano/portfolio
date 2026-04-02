@@ -171,7 +171,7 @@ const Projects = () => {
                   </span>
 
                   {/* Project Title with split-flap effect */}
-                  <h3 className='text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight leading-none'>
+                  <h3 className='text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-none'>
                     {project.title.split('').map((char, charIndex) => (
                       <FlipLetter
                         key={charIndex}

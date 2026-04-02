@@ -4,7 +4,6 @@ import MediumArticles from './components/MediumArticles'
 import Projects from './components/Projects'
 import Services from './components/Services'
 import ClientLogos from './components/ClientLogos'
-import Testimonials from './components/Testimonials'
 import Stats from './components/Stats'
 import CTA from './components/CTA'
 
@@ -16,7 +15,6 @@ export default function Home() {
       <ClientLogos />
       <Services />
       <Projects />
-      <Testimonials />
       <div className="bg-gray-50">
         <Container>
           <div className="py-20">

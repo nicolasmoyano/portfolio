@@ -20,7 +20,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: ['Crimson Text', 'Georgia', 'serif'],
-        display: ['Bricolage Grotesque', 'sans-serif'],
+        display: ['Host Grotesk', 'sans-serif'],
         serif: ['Crimson Text', 'Georgia', 'serif'],
       },
     },
