@@ -34,7 +34,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            Design that converts.
+            Strategic design for digital products
           </motion.h1>
 
           <motion.p
@@ -43,7 +43,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            I'm Nicolas Moyano, a product designer based in Stockholm creating digital experiences that drive real business results through thoughtful UX and conversion optimization.
+            I'm Nicolas Moyano, a product designer creating digital experiences that drive real business results through thoughtful UX and conversion optimization.
           </motion.p>
 
           <motion.div

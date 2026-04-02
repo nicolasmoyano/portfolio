@@ -146,7 +146,7 @@ const Projects = () => {
           viewport={{ once: true }}
           className='mb-16'
         >
-          <h2 className='text-4xl sm:text-5xl font-bold text-black'>
+          <h2 className='text-4xl sm:text-5xl font-bold text-black text-center'>
             Selected Work
           </h2>
         </motion.div>
