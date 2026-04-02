@@ -76,10 +76,10 @@ const MediumArticles: React.FC<MediumArticlesProps> = ({ username, limit }) => {
             href={article.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="group block overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+            className="group block overflow-hidden rounded-2xl border border-[var(--border)] hover:border-[var(--accent)] transition-all duration-300"
           >
             {article.thumbnail && (
-              <div className="relative overflow-hidden bg-gray-200 aspect-[16/9]">
+              <div className="relative overflow-hidden bg-[var(--card-bg)] aspect-[16/9]">
                 <img
                   src={article.thumbnail}
                   alt={article.title}
@@ -87,11 +87,11 @@ const MediumArticles: React.FC<MediumArticlesProps> = ({ username, limit }) => {
                 />
               </div>
             )}
-            <div className="p-6 bg-white">
-              <h3 className="text-xl font-semibold text-gray-900 group-hover:text-blue-700 transition-colors duration-200 line-clamp-2">
+            <div className="p-6 bg-[var(--card-bg)]">
+              <h3 className="text-lg font-semibold text-[var(--foreground)] group-hover:text-[var(--accent)] transition-colors duration-200 line-clamp-2 mb-3">
                 {article.title}
               </h3>
-              <p className="mt-2 text-sm text-gray-500">
+              <p className="text-sm text-[var(--muted)]">
                 {new Date(article.pubDate).toLocaleDateString('en-US', {
                   year: 'numeric',
                   month: 'long',

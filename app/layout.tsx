@@ -2,12 +2,13 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import MainNav from './components/MainNav'
+import Footer from './components/Footer'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Nicolas Moyano | Product Designer',
-  description: 'A product designer based in Stockholm',
+  title: 'Nicolas Moyano | Senior Product Designer',
+  description: 'Senior Product Designer in Stockholm, Sweden. Specializing in conversion-focused digital products with minimalistic design and technical excellence.',
 }
 
 export default function RootLayout({
@@ -18,11 +19,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className='sticky top-0'>
-        {/* <MainNav /> */}
-        </div>
+        <MainNav />
         {children}
-        </body>
+        <Footer />
+      </body>
     </html>
   )
 }
