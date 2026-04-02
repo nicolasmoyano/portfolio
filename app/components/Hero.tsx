@@ -6,7 +6,7 @@ import InteractiveBackground from './InteractiveBackground';
 
 const Hero = () => {
   return (
-    <section className='relative flex min-h-[85vh] justify-center items-center px-4 sm:px-6 lg:px-8 overflow-hidden'>
+    <section className='relative flex min-h-[90vh] justify-center items-center px-4 sm:px-6 lg:px-8 overflow-hidden bg-white'>
       {/* Interactive Background */}
       <InteractiveBackground />
 
@@ -18,54 +18,48 @@ const Hero = () => {
           transition={{ duration: 0.6 }}
         >
           <motion.div
-            className='mb-6'
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
+            className='mb-8'
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <span className='inline-block text-sm font-medium tracking-wide uppercase text-[var(--muted)] mb-4 relative'>
-              <span className='relative z-10'>Senior Product Designer</span>
-              <motion.div
-                className='absolute bottom-0 left-0 h-[2px] bg-[var(--accent)]'
-                initial={{ width: 0 }}
-                animate={{ width: '100%' }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-              />
+            <span className='inline-block px-4 py-2 rounded-full bg-black text-white text-sm font-medium'>
+              Senior Product Designer
             </span>
           </motion.div>
 
           <motion.h1
-            className='text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight mb-8'
+            className='text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[1.05] tracking-tight mb-8 text-black'
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            Hi, I'm <span className='text-gradient'>Nicolas Moyano</span>
+            Design that converts.
           </motion.h1>
 
           <motion.p
-            className='text-xl sm:text-2xl lg:text-3xl font-light text-[var(--muted)] mb-8 max-w-3xl leading-relaxed'
+            className='text-xl sm:text-2xl lg:text-3xl font-light text-[var(--muted)] mb-10 max-w-3xl leading-relaxed'
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            Creating conversion-focused digital products that blend minimalistic design with technical excellence.
+            I'm Nicolas Moyano, a product designer based in Stockholm creating digital experiences that drive real business results through thoughtful UX and conversion optimization.
           </motion.p>
 
           <motion.div
-            className='flex flex-wrap gap-4 items-center text-base text-[var(--muted)]'
+            className='flex flex-wrap gap-6 items-center text-base text-gray-600 mb-12'
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
           >
             <div className='flex items-center gap-2'>
-              <svg className='w-4 h-4' fill='currentColor' viewBox='0 0 20 20'>
-                <path fillRule='evenodd' d='M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z' clipRule='evenodd'/>
-              </svg>
+              <div className='w-2 h-2 rounded-full bg-blue-600'></div>
               <span>Stockholm, Sweden</span>
             </div>
-            <div className='w-1 h-1 rounded-full bg-[var(--muted)]'></div>
-            <span>Specializing in UX/UI & Conversion Optimization</span>
+            <div className='flex items-center gap-2'>
+              <div className='w-2 h-2 rounded-full bg-blue-600'></div>
+              <span>Available for projects</span>
+            </div>
           </motion.div>
 
           {/* CTA Buttons */}
@@ -77,7 +71,7 @@ const Hero = () => {
           >
             <a
               href='/#projects'
-              className='group inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[var(--accent)] text-white font-medium hover:bg-[var(--accent-hover)] transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105'
+              className='group inline-flex items-center gap-2 px-8 py-4 rounded-full bg-black text-white font-medium hover:bg-gray-800 transition-all duration-200 shadow-sm hover:shadow-md'
             >
               View My Work
               <svg className='w-5 h-5 group-hover:translate-x-1 transition-transform' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
@@ -86,7 +80,7 @@ const Hero = () => {
             </a>
             <a
               href='mailto:nicolas@moyano.se'
-              className='inline-flex items-center gap-2 px-8 py-4 rounded-full border-2 border-[var(--border)] hover:border-[var(--accent)] text-[var(--foreground)] font-medium transition-all duration-200 hover:scale-105'
+              className='inline-flex items-center gap-2 px-8 py-4 rounded-full border-2 border-gray-300 hover:border-black text-black font-medium transition-all duration-200'
             >
               Get in Touch
             </a>
@@ -101,7 +95,7 @@ const Hero = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 1, repeat: Infinity, repeatType: 'reverse', repeatDelay: 1 }}
       >
-        <div className='flex flex-col items-center gap-2 text-[var(--muted)]'>
+        <div className='flex flex-col items-center gap-2 text-gray-400'>
           <span className='text-xs uppercase tracking-wide'>Scroll</span>
           <svg className='w-6 h-6' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
             <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M19 14l-7 7m0 0l-7-7m7 7V3' />

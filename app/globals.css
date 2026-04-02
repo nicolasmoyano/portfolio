@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,23 +7,14 @@
 :root {
   --foreground: #0a0a0a;
   --background: #ffffff;
-  --border: #e5e5e5;
-  --accent: #0066ff;
-  --accent-hover: #0052cc;
-  --muted: #6b6b6b;
-  --card-bg: #fafafa;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground: #ffffff;
-    --background: #0a0a0a;
-    --border: #262626;
-    --accent: #3b82f6;
-    --accent-hover: #60a5fa;
-    --muted: #a3a3a3;
-    --card-bg: #141414;
-  }
+  --border: #e5e7eb;
+  --accent: #1a1a1a;
+  --accent-blue: #2563eb;
+  --accent-orange: #f97316;
+  --accent-purple: #9333ea;
+  --muted: #6b7280;
+  --card-bg: #f9fafb;
+  --light-gray: #f3f4f6;
 }
 
 * {
@@ -39,26 +30,37 @@ html {
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Crimson Text', Georgia, serif;
   font-weight: 400;
-  line-height: 1.6;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Space Grotesk', 'Inter', sans-serif;
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
+@media (prefers-color-scheme: dark) {
+  body {
+    background: var(--background);
+    color: var(--foreground);
+  }
 }
 
-/* Minimalistic tech-focused utilities */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Bricolage Grotesque', 'Inter', sans-serif;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+
+/* Design-focused utilities */
 .text-gradient {
-  background: linear-gradient(135deg, var(--accent) 0%, #8b5cf6 100%);
+  background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+.text-accent {
+  color: var(--accent);
 }
 
 .glass-effect {
@@ -72,6 +74,21 @@ h1, h2, h3, h4, h5, h6 {
     background: rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.05);
   }
+}
+
+/* Decorative circles */
+.circle-accent {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+/* Smooth transitions */
+* {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
 }
 
 /* Custom Scrollbar */

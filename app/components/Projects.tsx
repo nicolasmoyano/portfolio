@@ -1,7 +1,7 @@
 'use client';
 
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useRef, useEffect } from 'react';
+import { motion, AnimatePresence, useMotionValue, useSpring } from 'framer-motion';
 import Link from 'next/link';
 
 interface Project {
@@ -10,40 +10,135 @@ interface Project {
   category: string;
   description: string;
   image: string;
-  tags: string[];
 }
 
 const projects: Project[] = [
   {
-    id: 'project-1',
-    title: 'E-Commerce Conversion Optimization',
-    category: 'UX/UI Design',
-    description: 'Increased conversion rates by 45% through user-centered design and A/B testing.',
-    image: '/assets/project-1.jpg',
-    tags: ['Conversion', 'A/B Testing', 'UX Research'],
+    id: 'sbab',
+    title: 'SBAB',
+    category: 'B2B Application',
+    description: 'Building the Future of B2B Applications',
+    image: '/assets/sbab.jpg',
   },
   {
-    id: 'project-2',
-    title: 'SaaS Dashboard Redesign',
+    id: 'godel',
+    title: 'GODEL',
     category: 'Product Design',
-    description: 'Simplified complex data visualization for better user engagement and retention.',
-    image: '/assets/project-2.jpg',
-    tags: ['Data Viz', 'SaaS', 'UI Design'],
+    description: 'Energy comparison platform',
+    image: '/assets/godel.jpg',
   },
   {
-    id: 'project-3',
-    title: 'Mobile Banking Experience',
-    category: 'Mobile Design',
-    description: 'Created intuitive mobile banking interface focusing on security and ease of use.',
-    image: '/assets/project-3.jpg',
-    tags: ['Mobile', 'FinTech', 'Security'],
+    id: 'utopia',
+    title: 'UTOPIA',
+    category: 'Data Center Platform',
+    description: 'Enterprise data center management',
+    image: '/assets/utopia.jpg',
+  },
+  {
+    id: 'target-aid',
+    title: 'TARGET AID',
+    category: 'Social Impact',
+    description: 'Digital platform for transparent giving',
+    image: '/assets/target-aid.jpg',
+  },
+  {
+    id: 'svenska-spel',
+    title: 'SVENSKA SPEL',
+    category: 'Mobile App',
+    description: 'Mobile gaming experience',
+    image: '/assets/svenska-spel.jpg',
+  },
+  {
+    id: 'nordnet',
+    title: 'NORDNET',
+    category: 'FinTech',
+    description: 'Investment platform design',
+    image: '/assets/nordnet.jpg',
   },
 ];
 
-const Projects = () => {
+// Split-flap letter component matching Codrops implementation
+const FlipLetter: React.FC<{ char: string; isHovered: boolean; delay: number }> = ({
+  char,
+  isHovered,
+  delay
+}) => {
   return (
-    <section className='py-20 px-4 sm:px-6 lg:px-8' id='projects'>
-      <div className='max-w-7xl mx-auto'>
+    <span className='inline-block relative overflow-hidden' style={{ perspective: '1000px' }}>
+      {/* Original character - flips out */}
+      <motion.span
+        className='inline-block'
+        style={{
+          transformStyle: 'preserve-3d',
+          transformOrigin: '50% 100%',
+        }}
+        initial={{ rotateX: 0, y: '0%' }}
+        animate={{
+          rotateX: isHovered ? -90 : 0,
+          y: isHovered ? '100%' : '0%',
+        }}
+        transition={{
+          duration: 0.5,
+          delay: delay,
+          ease: [0.7, 0, 0.3, 1],
+        }}
+      >
+        {char === ' ' ? '\u00A0' : char}
+      </motion.span>
+
+      {/* Cloned character - flips in */}
+      <motion.span
+        className='inline-block absolute top-0 left-0'
+        style={{
+          transformStyle: 'preserve-3d',
+          transformOrigin: '50% 0%',
+        }}
+        initial={{ rotateX: 90, y: '-100%' }}
+        animate={{
+          rotateX: isHovered ? 0 : 90,
+          y: isHovered ? '0%' : '-100%',
+        }}
+        transition={{
+          duration: 0.5,
+          delay: delay,
+          ease: [0.7, 0, 0.3, 1],
+        }}
+      >
+        {char === ' ' ? '\u00A0' : char}
+      </motion.span>
+    </span>
+  );
+};
+
+const Projects = () => {
+  const [hoveredProject, setHoveredProject] = useState<string | null>(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const imageRotation = useMotionValue(0);
+  const smoothRotation = useSpring(imageRotation, { stiffness: 150, damping: 15 });
+
+  const prevMousePos = useRef({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      const dx = e.clientX - prevMousePos.current.x;
+      const dy = e.clientY - prevMousePos.current.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+
+      // Calculate rotation based on mouse movement direction
+      const angle = Math.atan2(dy, dx) * (180 / Math.PI);
+      imageRotation.set(angle * 0.05); // Reduced rotation amount
+
+      setMousePosition({ x: e.clientX, y: e.clientY });
+      prevMousePos.current = { x: e.clientX, y: e.clientY };
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  return (
+    <section className='py-20 px-4 sm:px-6 lg:px-8 bg-white relative' id='projects'>
+      <div className='max-w-[1600px] mx-auto'>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -51,65 +146,82 @@ const Projects = () => {
           viewport={{ once: true }}
           className='mb-16'
         >
-          <h2 className='text-4xl sm:text-5xl font-bold mb-4'>
-            Selected <span className='text-gradient'>Work</span>
+          <h2 className='text-4xl sm:text-5xl font-bold text-black'>
+            Selected Work
           </h2>
-          <p className='text-lg text-[var(--muted)] max-w-2xl'>
-            Digital products designed with focus on user experience and business results.
-          </p>
         </motion.div>
 
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-12'>
           {projects.map((project, index) => (
             <motion.div
               key={project.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              transition={{ duration: 0.5, delay: index * 0.05 }}
               viewport={{ once: true }}
+              onMouseEnter={() => setHoveredProject(project.id)}
+              onMouseLeave={() => setHoveredProject(null)}
+              className='relative'
             >
               <Link href={`/projects/${project.id}`}>
                 <div className='group cursor-pointer'>
-                  <div className='relative overflow-hidden rounded-2xl bg-[var(--card-bg)] border border-[var(--border)] mb-4 aspect-[4/3] hover:border-[var(--accent)] transition-all duration-300'>
-                    <div className='absolute inset-0 bg-gradient-to-br from-[var(--accent)] to-purple-600 opacity-10 group-hover:opacity-20 transition-opacity duration-300'></div>
-                    <div className='absolute inset-0 flex items-center justify-center'>
-                      <div className='text-6xl font-bold opacity-5 group-hover:opacity-10 transition-opacity duration-300'>
-                        {index + 1}
-                      </div>
-                    </div>
-                  </div>
+                  {/* Number */}
+                  <span className='block text-xs text-gray-400 font-light tracking-wider mb-4'>
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
 
-                  <div className='space-y-3'>
-                    <div className='flex items-center gap-2'>
-                      <span className='text-xs font-medium text-[var(--accent)] uppercase tracking-wide'>
-                        {project.category}
-                      </span>
-                    </div>
-
-                    <h3 className='text-2xl font-semibold group-hover:text-[var(--accent)] transition-colors duration-200'>
-                      {project.title}
-                    </h3>
-
-                    <p className='text-[var(--muted)] leading-relaxed'>
-                      {project.description}
-                    </p>
-
-                    <div className='flex flex-wrap gap-2 pt-2'>
-                      {project.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className='text-xs px-3 py-1 rounded-full bg-[var(--card-bg)] border border-[var(--border)] text-[var(--muted)]'
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
+                  {/* Project Title with split-flap effect */}
+                  <h3 className='text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight leading-none'>
+                    {project.title.split('').map((char, charIndex) => (
+                      <FlipLetter
+                        key={charIndex}
+                        char={char}
+                        isHovered={hoveredProject === project.id}
+                        delay={charIndex * 0.025}
+                      />
+                    ))}
+                  </h3>
                 </div>
               </Link>
             </motion.div>
           ))}
         </div>
+
+        {/* Floating hover image with rotation based on mouse movement */}
+        <AnimatePresence>
+          {hoveredProject && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              transition={{ duration: 0.4, ease: [0.7, 0, 0.3, 1] }}
+              className='fixed pointer-events-none z-50'
+              style={{
+                left: mousePosition.x + 20,
+                top: mousePosition.y + 20,
+                width: '400px',
+                height: '300px',
+                rotate: smoothRotation,
+              }}
+            >
+              <div
+                className='w-full h-full bg-gray-200 rounded-lg shadow-2xl'
+                style={{
+                  backgroundImage: projects.find(p => p.id === hoveredProject)?.image
+                    ? `url(${projects.find(p => p.id === hoveredProject)?.image})`
+                    : 'none',
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                }}
+              >
+                {/* Placeholder */}
+                <div className='w-full h-full flex items-center justify-center text-gray-400 text-sm'>
+                  {projects.find(p => p.id === hoveredProject)?.title}
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   );

@@ -19,8 +19,9 @@ const config: Config = {
         muted: 'var(--muted)',
       },
       fontFamily: {
-        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-        display: ['Space Grotesk', 'Inter', 'sans-serif'],
+        sans: ['Crimson Text', 'Georgia', 'serif'],
+        display: ['Bricolage Grotesque', 'sans-serif'],
+        serif: ['Crimson Text', 'Georgia', 'serif'],
       },
     },
   },

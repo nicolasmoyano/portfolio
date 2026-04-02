@@ -13,7 +13,7 @@ export default function NotFound() {
         transition={{ duration: 0.6 }}
         className='text-center'
       >
-        <h1 className='text-8xl sm:text-9xl font-bold mb-4 text-gradient'>
+        <h1 className='text-8xl sm:text-9xl font-bold mb-4 text-black'>
           404
         </h1>
         <h2 className='text-3xl sm:text-4xl font-semibold mb-4'>
